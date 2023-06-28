@@ -31,6 +31,8 @@ class MailSender:
             _TO='dest@teste.com.br'
             _SUBJECT='Foo Bar'
             _PATH_TEMPLATE=Path('foo_bar.txt')
+            _TYPE_MESSAGE = 'html'
+
         
         Data().send('foo')
     '''
