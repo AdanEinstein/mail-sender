@@ -5,7 +5,7 @@ import re
 from string import Template
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from typing import Callable
+from typing import Callable, Literal
 from ..errors import MailException, raiseMailException
 
 class MailSender:
@@ -42,6 +42,7 @@ class MailSender:
     _TO: Callable | str = raiseMailException('TO não encontrado')
     _SUBJECT: Callable | str = raiseMailException('SUBJECT não encontrado')
     _PATH_TEMPLATE: Callable | Path = raiseMailException('PATH_TEMPLATE não encontrado')
+    _TYPE_MESSAGE: Literal['plain'] | Literal['html'] = 'plain'
 
     def __create(self, host: str, port: int, username: str, password: str):
         try:
@@ -89,7 +90,7 @@ class MailSender:
         msg['From'] = self._FROM
         msg['To'] = self._TO
         msg['Subject'] = self._SUBJECT
-        msg.attach(MIMEText(message, 'plain'))
+        msg.attach(MIMEText(message, self._TYPE_MESSAGE))
         self.send_hpom(host=host, port=port, message=msg)
     
     def send_hpop(self, host: str, port: int, params: tuple[str,...]):
