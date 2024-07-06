@@ -5,14 +5,17 @@
 **Crie um template**
 Template foo_bar.txt:
 -------------------------------
+```
 Olá, ${NOME_PESSOA}!
 
 Tudo bem!
 
 Tchau.
+```
 -------------------------------
 
-**Crie uma classe para definir os atributos principais**    
+**Crie uma classe para definir os atributos principais**
+```
     class Data(MailSender):
         _HOST='0.0.0.0'
         _PORT=00
@@ -23,7 +26,9 @@ Tchau.
         _SUBJECT='Foo Bar'
         _PATH_TEMPLATE=Path('foo_bar.txt')
         _TYPE_MESSAGE = 'html'
-
+```
 **Chame o método _send()_ para enviar**
 Exemplo de utilização:
+```
     Data().send('foo')
+```
